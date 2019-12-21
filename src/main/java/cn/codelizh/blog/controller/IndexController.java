@@ -11,6 +11,6 @@ public class GreetingController {
     @GetMapping("/hello")
     public String greeting(@RequestParam(name = "name") String name, Model model) {
         model.addAttribute("name", name);
-        return "hello";
+        return "index";
     }
 }
