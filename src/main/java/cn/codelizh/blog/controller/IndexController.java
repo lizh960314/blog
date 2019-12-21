@@ -1,4 +1,4 @@
-package cn.codelizh.blog.hello;
+package cn.codelizh.blog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class GreetingController {
+public class IndexController {
 
-    @GetMapping("/hello")
-    public String greeting(@RequestParam(name = "name") String name, Model model) {
-        model.addAttribute("name", name);
+    @GetMapping("/")
+    public String index() {
         return "index";
     }
 }
