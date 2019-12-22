@@ -1,6 +1,7 @@
 package cn.codelizh.blog.controller;
 
 import cn.codelizh.blog.dto.AccessTokenDTO;
+import cn.codelizh.blog.dto.GithubUser;
 import cn.codelizh.blog.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,10 @@ public class AuthorizeController {
         accessTokenDTO.setClient_id("a08ea8e11a598913a3ae");
         accessTokenDTO.setClient_secret("ddd8c62173e6fdc6a64d87517e68146514ba7ba2");
         accessTokenDTO.setState(state);
-        githubProvider.getAccessToken(accessTokenDTO);
+        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        GithubUser user = githubProvider.getUser(accessToken);
+        System.out.println(user.getName());
         return "index";
     }
 
 }
-N
