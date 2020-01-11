@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!--<html lang="en">-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="static/css/main.min.css"/>
+
+    <link rel="stylesheet" href="static/css/index.css"/>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>长木博客</title>
+</head>
+<body>
+<!-- 导航-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header ">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">长木博客</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a style="width: 45px;height:50px;" class="navbar-brand" href="#">
+                <img alt="Brand" src="static/images/logo.png" width="100%" height="100%">
+            </a>
+            <a class="navbar-brand" href="#">长木博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">首页 </a></li>
+                <li><a href="#">分类</a></li>
+                <li><a href="#">归档</a></li>
+            </ul>
+            <!--                搜索框-->
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="搜索">
+                </div>
+                <button type="submit" class="btn btn-inverse">提交</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">关于我</a></li>
+                <li class="dropdown" th:if="${session.user != null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret" ></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">个人中心</a></li>
+                        <li><a href="#">我的收藏</a></li>
+                        <li><a href="#">浏览记录</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">退出登录</a></li>
+                    </ul>
+                </li>
+                <li th:if="${session.user == null }"><a href="https://github.com/login/oauth/authorize?client_id=a08ea8e11a598913a3ae&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<!--中间内容-->
+<div class="container-fluid">
+    <div style="background-image: url(static/images/header.jpg);"></div>
+</div>
+
+<!--    <div>-->
+<!--        <main role="main" class="main-header has-custom-header">-->
+<!--            <div class="section-intro d-flex align-items-center" style="background-image: url(static/images/header.jpg);">-->
+<!--                <div class="container-fluid  px-responsive">-->
+<!--                    <div class="d-md-flex align-items-center">-->
+<!--                        <div class="col-12 col-md-7 text-center text-md-left" style="min-height: 100%; overflow: hidden">-->
+<!--                            <h1 class="mb-3">Codelizh</h1>-->
+<!--                            <p class="mb4 desc-text" id="header-desc-text">李志豪</p>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-5">-->
+<!--                            <aside class="home-intro-sidebar">-->
+<!--                                <div class="container px-responsive">-->
+<!--                                    <div class="row my-4">-->
+<!--                                        <section id="text-15" class="widget widget_text my-2 col-lg-12">			<div class="textwidget"></div>-->
+<!--                                        </section>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </aside>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="scroll-area">-->
+<!--                    <a href="#main-container"><i class="fas fa-arrow-down"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="container">-->
+<!--                <div class="row row-layout-choice-home">-->
+<!--                    <section id="main-container" class="col-lg-8 col-md-8 col-sm-12">-->
+
+<!--                        <div class="row my-4">-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-626" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/31/idea%e7%8e%af%e5%a2%83%e4%bd%bf%e7%94%a8git/" title="IDEA环境使用Git">IDEA环境使用Git</a></h5>-->
+<!--                                                <p class="card-text">推送到Github 在设置中登录github账户 点击OK 将项目交给Git管理 添加文件到暂存区 添加文件到... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/31/idea%e7%8e%af%e5%a2%83%e4%bd%bf%e7%94%a8git/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/31/idea%e7%8e%af%e5%a2%83%e4%bd%bf%e7%94%a8git/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/31/idea%e7%8e%af%e5%a2%83%e4%bd%bf%e7%94%a8git/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-31上午10:32" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-31T10:32:14+08:00">发布于 5小时前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-623" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/30/git%e6%8a%a5%e9%94%99%ef%bc%9a/" title="Git报错：failed to push some refs to ‘https://github.com/….">Git报错：failed to push some refs to ‘https://github.com/….</a></h5>-->
+<!--                                                <p class="card-text">具体错误信息 To https://github.com/373675032/Molihub.git ! [r... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/30/git%e6%8a%a5%e9%94%99%ef%bc%9a/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/30/git%e6%8a%a5%e9%94%99%ef%bc%9a/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/30/git%e6%8a%a5%e9%94%99%ef%bc%9a/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-30下午1:47" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-30T13:47:36+08:00">发布于 1天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-569" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/29/git%e5%92%8cgithub/" title="使用 Git和Github">使用 Git和Github</a></h5>-->
+<!--                                                <p class="card-text">本地库初始化 效果: 注意: .git 目录中存放的是本地库相关的子目录和文件，不要删除，也不要胡 乱修改。 ... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/29/git%e5%92%8cgithub/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/29/git%e5%92%8cgithub/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/29/git%e5%92%8cgithub/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-29下午11:57" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-29T23:57:36+08:00">发布于 2天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-551" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/28/spring-boot%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6/" title="Spring Boot的配置文件">Spring Boot的配置文件</a></h5>-->
+<!--                                                <p class="card-text">简述配置文件 SpringBoot使用一个全局的配置文件，配置文件名是固定的，也就是下面这两种： applic... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/28/spring-boot%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/28/spring-boot%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/28/spring-boot%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-28下午4:31" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-28T16:31:14+08:00">发布于 3天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-561" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/28/properties%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%9c%a8idea%e4%b8%ad%e4%b9%b1%e7%a0%81/" title="properties配置文件在idea中乱码">properties配置文件在idea中乱码</a></h5>-->
+<!--                                                <p class="card-text"></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/28/properties%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%9c%a8idea%e4%b8%ad%e4%b9%b1%e7%a0%81/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/28/properties%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%9c%a8idea%e4%b8%ad%e4%b9%b1%e7%a0%81/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-28下午3:35" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-28T15:35:21+08:00">发布于 3天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-543" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f-observer%e6%a8%a1%e5%bc%8f/" title="设计模式-观察者模式-Observer模式">设计模式-观察者模式-Observer模式</a></h5>-->
+<!--                                                <p class="card-text">Observer模式UML类图 Subject(观察对象)该角色定义了注册,删除,和通知观察者的方法 Conc... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f-observer%e6%a8%a1%e5%bc%8f/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f-observer%e6%a8%a1%e5%bc%8f/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f-observer%e6%a8%a1%e5%bc%8f/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-25下午9:16" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-25T21:16:38+08:00">发布于 6天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-541" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-iterator%e6%a8%a1%e5%bc%8f%e8%bf%ad%e4%bb%a3%e5%99%a8/" title="设计模式-Iterator模式(迭代器)">设计模式-Iterator模式(迭代器)</a></h5>-->
+<!--                                                <p class="card-text">所谓的迭代器,就是一个一个的遍历 就像下面这个图 常见的遍历语句就是for循环 for(int i = 0; ... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-iterator%e6%a8%a1%e5%bc%8f%e8%bf%ad%e4%bb%a3%e5%99%a8/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-iterator%e6%a8%a1%e5%bc%8f%e8%bf%ad%e4%bb%a3%e5%99%a8/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-iterator%e6%a8%a1%e5%bc%8f%e8%bf%ad%e4%bb%a3%e5%99%a8/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-25下午9:10" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-25T21:10:11+08:00">发布于 6天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-529" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e6%a1%a5%e6%8e%a5%e6%a8%a1%e5%bc%8fbridge%e6%a8%a1%e5%bc%8f%e5%b0%86%e7%b1%bb%e7%9a%84%e5%8a%9f%e8%83%bd%e5%b1%82%e6%ac%a1%e7%bb%93%e6%9e%84%e5%92%8c%e5%ae%9e/" title="设计模式-桥接模式(Bridge模式,将类的功能层次结构和实现层次结构分离)">设计模式-桥接模式(Bridge模式,将类的功能层次结构和实现层次结构分离)</a></h5>-->
+<!--                                                <p class="card-text">桥接模式UML类图 分析模式中登场的角色 Abstraction(抽象化)该角色位于”类的功能层次结构的最上层... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e6%a1%a5%e6%8e%a5%e6%a8%a1%e5%bc%8fbridge%e6%a8%a1%e5%bc%8f%e5%b0%86%e7%b1%bb%e7%9a%84%e5%8a%9f%e8%83%bd%e5%b1%82%e6%ac%a1%e7%bb%93%e6%9e%84%e5%92%8c%e5%ae%9e/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e6%a1%a5%e6%8e%a5%e6%a8%a1%e5%bc%8fbridge%e6%a8%a1%e5%bc%8f%e5%b0%86%e7%b1%bb%e7%9a%84%e5%8a%9f%e8%83%bd%e5%b1%82%e6%ac%a1%e7%bb%93%e6%9e%84%e5%92%8c%e5%ae%9e/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e6%a1%a5%e6%8e%a5%e6%a8%a1%e5%bc%8fbridge%e6%a8%a1%e5%bc%8f%e5%b0%86%e7%b1%bb%e7%9a%84%e5%8a%9f%e8%83%bd%e5%b1%82%e6%ac%a1%e7%bb%93%e6%9e%84%e5%92%8c%e5%ae%9e/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-24下午10:56" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-24T22:56:37+08:00">发布于 7天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-527" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-builder%e6%a8%a1%e5%bc%8f%e5%bb%ba%e9%80%a0%e8%80%85%e6%a8%a1%e5%bc%8f-%e7%bb%84%e8%a3%85%e5%a4%8d%e6%9d%82%e7%9a%84%e5%ae%9e%e4%be%8b/" title="设计模式-Builder模式(建造者模式-组装复杂的实例)">设计模式-Builder模式(建造者模式-组装复杂的实例)</a></h5>-->
+<!--                                                <p class="card-text">基本介绍 建造者模式（Builder Pattern） 又叫生成器模式，是一种对象构建模式。它可以将复杂对象的... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-builder%e6%a8%a1%e5%bc%8f%e5%bb%ba%e9%80%a0%e8%80%85%e6%a8%a1%e5%bc%8f-%e7%bb%84%e8%a3%85%e5%a4%8d%e6%9d%82%e7%9a%84%e5%ae%9e%e4%be%8b/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-builder%e6%a8%a1%e5%bc%8f%e5%bb%ba%e9%80%a0%e8%80%85%e6%a8%a1%e5%bc%8f-%e7%bb%84%e8%a3%85%e5%a4%8d%e6%9d%82%e7%9a%84%e5%ae%9e%e4%be%8b/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/24/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-builder%e6%a8%a1%e5%bc%8f%e5%bb%ba%e9%80%a0%e8%80%85%e6%a8%a1%e5%bc%8f-%e7%bb%84%e8%a3%85%e5%a4%8d%e6%9d%82%e7%9a%84%e5%ae%9e%e4%be%8b/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-24下午10:45" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-24T22:45:16+08:00">发布于 7天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <article id="post-525" class="article-list">-->
+<!--                                    <div class="card my-2">-->
+
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div class="card-text-fade-out">-->
+<!--                                                <h5 class="card-title"><a href="http://xuewei.world:8000/2019/12/24/%e6%b7%b1%e5%85%a5%e7%90%86%e8%a7%a3%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f%e5%85%ab%e7%a7%8d%e5%88%9b%e5%bb%ba%e6%96%b9%e5%bc%8f/" title="深入理解单例模式(八种创建方式)">深入理解单例模式(八种创建方式)</a></h5>-->
+<!--                                                <p class="card-text">1) 饿汉式(静态常量) 实现步骤 构造器私有化 (防止 new ) 类的内部创建对象 向外暴露一个静态的公共... » <a class="read-more-link" href="http://xuewei.world:8000/2019/12/24/%e6%b7%b1%e5%85%a5%e7%90%86%e8%a7%a3%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f%e5%85%ab%e7%a7%8d%e5%88%9b%e5%bb%ba%e6%96%b9%e5%bc%8f/">阅读全文</a></p>-->
+<!--                                                <div class="effect-layer"></div>-->
+<!--                                            </div>-->
+
+
+<!--                                            <div class="card-body-footer">-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/24/%e6%b7%b1%e5%85%a5%e7%90%86%e8%a7%a3%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f%e5%85%ab%e7%a7%8d%e5%88%9b%e5%bb%ba%e6%96%b9%e5%bc%8f/#comments" class="button-like-link">-->
+<!--                                                    <div class="btn-counter">-->
+<!--                                                        <div class="btn">-->
+<!--                                                            <i class="fas fa-comment-dots"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="count-box">0</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+
+<!--                                                <a href="http://xuewei.world:8000/2019/12/24/%e6%b7%b1%e5%85%a5%e7%90%86%e8%a7%a3%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f%e5%85%ab%e7%a7%8d%e5%88%9b%e5%bb%ba%e6%96%b9%e5%bc%8f/" class="button-like-link">-->
+<!--                                                    <div class="btn-counter text-only">-->
+<!--                                                        <div class="btn">阅读</div>-->
+<!--                                                    </div>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="card-footer text-muted text-center">-->
+<!--                                            <div class="author-posted-date"><a href="http://xuewei.world:8000/author/moti/" title="written 2019-12-24下午10:32" class="author-link">莫提</a> <time itemprop="datePublished" datetime="2019-12-24T22:32:39+08:00">发布于 7天前</time></div>						</div>-->
+<!--                                    </div>-->
+<!--                                </article>-->
+<!--                            </div>-->
+
+
+<!--                        </div>-->
+
+
+<!--                        <div class="pagination-container">-->
+
+<!--                            <nav aria-label="Page navigation" role="navigation">-->
+<!--                                <span class="sr-only">页面导览</span>-->
+<!--                                <ul class="pagination justify-content-center ft-wpbs">-->
+
+<!--                                    <li class="page-item disabled hidden-md-down d-none d-lg-block">-->
+<!--                                        <span class="page-link">1 / 9</span>-->
+<!--                                    </li>-->
+
+
+<!--                                    <li class="page-item active">-->
+<!--								<span class="page-link">-->
+<!--									<span class="sr-only">目前页面</span>-->
+<!--									1								</span>-->
+<!--                                    </li>-->
+<!--                                    <li class="page-item">-->
+<!--                                        <a class="page-link" href="http://xuewei.world:8000/page/2/">-->
+<!--                                            <span class="sr-only">页次</span>-->
+<!--                                            2								</a>-->
+<!--                                    </li>-->
+
+<!--                                    <li class="page-item">-->
+<!--                                        <a class="page-link" href="http://xuewei.world:8000/page/2/" aria-label="下一页">-->
+<!--                                            <span class="hidden-sm-down d-none d-md-inline-block">往后&nbsp;</span>›-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+
+<!--                                    <li class="page-item">-->
+<!--                                        <a class="page-link" href="http://xuewei.world:8000/page/9/" aria-label="最末页">-->
+<!--                                            <span class="hidden-sm-down d-none d-md-inline-block">最后&nbsp;</span>»-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </nav>-->
+
+<!--                        </div>-->
+<!--                    </section>-->
+
+<!--                    <aside id="aside-container" class="col-lg-4 col-md-4 col-sm-12" role="complementary">-->
+
+<!--                        <div id="sidebar-home" class="sidebar">-->
+<!--                            <section id="text-11" class="widget widget_text">			<div class="textwidget"></div>-->
+<!--                            </section>-->
+<!--                            <section id="wp_statistics_widget-2" class="widget widget_wp_statistics_widget">-->
+<!--                                <h2 class="widget-title"></h2>-->
+<!--                                <ul>-->
+<!--                                    <li><label>累计访问: </label>4,943</li>-->
+<!--                                    <li><label>累计访客: </label>1,818</li>-->
+<!--                                    <li><label>总计文章: </label>87</li>-->
+<!--                                </ul>-->
+<!--                            </section>-->
+<!--                            <section id="views-2" class="widget widget_views">-->
+<!--                                <h2 class="widget-title">浏览最多</h2>-->
+<!--                                <ul>-->
+<!--                                    <li><a href="http://xuewei.world:8000/2019/09/25/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e5%b8%b8%e7%94%a8%e7%9a%84%e4%b8%83%e5%a4%a7%e5%8e%9f%e5%88%99/" title="设计模式-常用的七大原则">设计模式-常用的七大原则</a> - 150 views</li><li><a href="http://xuewei.world:8000/2019/12/21/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f-%e4%b8%89%e7%a7%8d%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f/" title="设计模式-三种工厂模式">设计模式-三种工厂模式</a> - 142 views</li><li><a href="http://xuewei.world:8000/2019/12/29/git%e5%92%8cgithub/" title="使用 Git和Github">使用 Git和Github</a> - 123 views</li><li><a href="http://xuewei.world:8000/2019/12/15/%e6%b5%85%e8%b0%88%e5%8d%95%e4%bd%93%e5%ba%94%e7%94%a8%e6%9e%b6%e6%9e%84-soa%e5%92%8c%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%9e%b6%e6%9e%84/" title="浅谈”单体应用架构 “,”SOA”和...">浅谈”单体应用架构 “,”SOA”和...</a> - 106 views</li><li><a href="http://xuewei.world:8000/2019/12/21/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f%e7%9a%84%e4%b8%89%e7%a7%8d%e7%b1%bb%e5%9e%8b/" title="设计模式的分类及各个模式的简介">设计模式的分类及各个模式的简介</a> - 94 views</li><li><a href="http://xuewei.world:8000/2019/10/09/%e9%98%bf%e9%87%8c%e4%ba%91%e7%9f%a2%e9%87%8f%e5%9b%be%e6%a0%87%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95/" title="阿里云矢量图标使用方法">阿里云矢量图标使用方法</a> - 90 views</li><li><a href="http://xuewei.world:8000/2018/12/13/linux%e7%9a%84vim%e5%92%8cvi%e7%9a%84%e7%ae%80%e5%8d%95%e4%bd%bf%e7%94%a8/" title="Linux的vim和vi的简单使用">Linux的vim和vi的简单使用</a> - 89 views</li><li><a href="http://xuewei.world:8000/2019/12/21/uml%e7%b1%bb%e5%9b%be/" title="UML类图">UML类图</a> - 87 views</li><li><a href="http://xuewei.world:8000/2018/06/03/linux%e7%b3%bb%e7%bb%9f%e9%98%b2%e7%81%ab%e5%a2%99%e7%9b%b8%e5%85%b3%e9%97%ae%e9%a2%98%e5%8f%8a%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e4%bb%8b%e7%bb%8d/" title="linux系统防火墙相关问题及常用命...">linux系统防火墙相关问题及常用命...</a> - 75 views</li><li><a href="http://xuewei.world:8000/2018/04/18/java8%e6%96%b0%e7%89%b9%e6%80%a7-lambda%e8%a1%a8%e8%be%be%e5%bc%8f/" title="Java8新特性-Lambda表达式">Java8新特性-Lambda表达式</a> - 71 views</li></ul>-->
+<!--                        </section><section id="tag_cloud-3" class="widget widget_tag_cloud"><h2 class="widget-title">标签</h2><div class="tagcloud"><a href="http://xuewei.world:8000/tag/ajax/" class="tag-cloud-link tag-link-71 tag-link-position-1" style="font-size: 8pt;" aria-label="Ajax (1个项目)">Ajax</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/aop/" class="tag-cloud-link tag-link-60 tag-link-position-2" style="font-size: 11.111111111111pt;" aria-label="AOP (2个项目)">AOP</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/arraylist/" class="tag-cloud-link tag-link-45 tag-link-position-3" style="font-size: 11.111111111111pt;" aria-label="ArrayList (2个项目)">ArrayList</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/centos/" class="tag-cloud-link tag-link-35 tag-link-position-4" style="font-size: 17.506172839506pt;" aria-label="CentOS (6个项目)">CentOS</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/copyonwrite/" class="tag-cloud-link tag-link-46 tag-link-position-5" style="font-size: 8pt;" aria-label="CopyOnWrite (1个项目)">CopyOnWrite</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/di/" class="tag-cloud-link tag-link-53 tag-link-position-6" style="font-size: 8pt;" aria-label="DI (1个项目)">DI</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/docker/" class="tag-cloud-link tag-link-77 tag-link-position-7" style="font-size: 22pt;" aria-label="Docker (12个项目)">Docker</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/eclipse/" class="tag-cloud-link tag-link-72 tag-link-position-8" style="font-size: 11.111111111111pt;" aria-label="Eclipse (2个项目)">Eclipse</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/git%e5%92%8cgithub/" class="tag-cloud-link tag-link-92 tag-link-position-9" style="font-size: 13.185185185185pt;" aria-label="Git和GitHub (3个项目)">Git和GitHub</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/idea/" class="tag-cloud-link tag-link-61 tag-link-position-10" style="font-size: 14.913580246914pt;" aria-label="IDEA (4个项目)">IDEA</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/ioc/" class="tag-cloud-link tag-link-50 tag-link-position-11" style="font-size: 11.111111111111pt;" aria-label="IOC (2个项目)">IOC</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/java/" class="tag-cloud-link tag-link-11 tag-link-position-12" style="font-size: 16.296296296296pt;" aria-label="java (5个项目)">java</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/java8/" class="tag-cloud-link tag-link-64 tag-link-position-13" style="font-size: 16.296296296296pt;" aria-label="Java8 (5个项目)">Java8</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/jquery/" class="tag-cloud-link tag-link-70 tag-link-position-14" style="font-size: 8pt;" aria-label="JQuery (1个项目)">JQuery</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/jvm-juc/" class="tag-cloud-link tag-link-48 tag-link-position-15" style="font-size: 8pt;" aria-label="JVM/JUC (1个项目)">JVM/JUC</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/lambda/" class="tag-cloud-link tag-link-65 tag-link-position-16" style="font-size: 8pt;" aria-label="Lambda (1个项目)">Lambda</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/leetcode/" class="tag-cloud-link tag-link-26 tag-link-position-17" style="font-size: 8pt;" aria-label="LeetCode (1个项目)">LeetCode</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/linux%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae/" class="tag-cloud-link tag-link-78 tag-link-position-18" style="font-size: 19.234567901235pt;" aria-label="Linux环境配置 (8个项目)">Linux环境配置</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/maven/" class="tag-cloud-link tag-link-62 tag-link-position-19" style="font-size: 8pt;" aria-label="Maven (1个项目)">Maven</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/mybatis/" class="tag-cloud-link tag-link-18 tag-link-position-20" style="font-size: 17.506172839506pt;" aria-label="MyBatis (6个项目)">MyBatis</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/mysql/" class="tag-cloud-link tag-link-37 tag-link-position-21" style="font-size: 13.185185185185pt;" aria-label="MySQL (3个项目)">MySQL</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/nginx/" class="tag-cloud-link tag-link-22 tag-link-position-22" style="font-size: 16.296296296296pt;" aria-label="Nginx (5个项目)">Nginx</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/ngrok/" class="tag-cloud-link tag-link-40 tag-link-position-23" style="font-size: 8pt;" aria-label="Ngrok (1个项目)">Ngrok</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/spring/" class="tag-cloud-link tag-link-16 tag-link-position-24" style="font-size: 18.37037037037pt;" aria-label="Spring (7个项目)">Spring</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/spring-boot/" class="tag-cloud-link tag-link-84 tag-link-position-25" style="font-size: 13.185185185185pt;" aria-label="Spring Boot (3个项目)">Spring Boot</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/spring-mvc/" class="tag-cloud-link tag-link-17 tag-link-position-26" style="font-size: 11.111111111111pt;" aria-label="Spring MVC (2个项目)">Spring MVC</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/stream-api/" class="tag-cloud-link tag-link-69 tag-link-position-27" style="font-size: 8pt;" aria-label="Stream API (1个项目)">Stream API</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/tomcat/" class="tag-cloud-link tag-link-34 tag-link-position-28" style="font-size: 11.111111111111pt;" aria-label="Tomcat (2个项目)">Tomcat</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/ubuntu/" class="tag-cloud-link tag-link-27 tag-link-position-29" style="font-size: 11.111111111111pt;" aria-label="Ubuntu (2个项目)">Ubuntu</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/vim-vi/" class="tag-cloud-link tag-link-30 tag-link-position-30" style="font-size: 8pt;" aria-label="vim/vi (1个项目)">vim/vi</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5/" class="tag-cloud-link tag-link-52 tag-link-position-31" style="font-size: 8pt;" aria-label="依赖注入 (1个项目)">依赖注入</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e5%86%85%e7%bd%91%e7%a9%bf%e9%80%8f/" class="tag-cloud-link tag-link-23 tag-link-position-32" style="font-size: 8pt;" aria-label="内网穿透 (1个项目)">内网穿透</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e5%89%8d%e7%ab%af/" class="tag-cloud-link tag-link-12 tag-link-position-33" style="font-size: 13.185185185185pt;" aria-label="前端 (3个项目)">前端</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e5%8a%a8%e9%9d%99%e5%88%86%e7%a6%bb/" class="tag-cloud-link tag-link-43 tag-link-position-34" style="font-size: 8pt;" aria-label="动静分离 (1个项目)">动静分离</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e5%8d%95%e4%bd%93%e5%ba%94%e7%94%a8%e6%9e%b6%e6%9e%84/" class="tag-cloud-link tag-link-82 tag-link-position-35" style="font-size: 8pt;" aria-label="单体应用架构 (1个项目)">单体应用架构</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86/" class="tag-cloud-link tag-link-41 tag-link-position-36" style="font-size: 8pt;" aria-label="反向代理 (1个项目)">反向代理</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e5%be%ae%e6%9c%8d%e5%8a%a1/" class="tag-cloud-link tag-link-80 tag-link-position-37" style="font-size: 8pt;" aria-label="微服务 (1个项目)">微服务</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%9e%b6%e6%9e%84/" class="tag-cloud-link tag-link-81 tag-link-position-38" style="font-size: 8pt;" aria-label="微服务架构 (1个项目)">微服务架构</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e6%8e%a7%e5%88%b6%e5%8f%8d%e8%bd%ac/" class="tag-cloud-link tag-link-51 tag-link-position-39" style="font-size: 8pt;" aria-label="控制反转 (1个项目)">控制反转</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e6%95%b0%e7%bb%84%e5%bc%95%e7%94%a8/" class="tag-cloud-link tag-link-68 tag-link-position-40" style="font-size: 8pt;" aria-label="数组引用 (1个项目)">数组引用</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e6%96%b9%e6%b3%95%e5%bc%95%e7%94%a8/" class="tag-cloud-link tag-link-66 tag-link-position-41" style="font-size: 8pt;" aria-label="方法引用 (1个项目)">方法引用</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e6%9e%84%e9%80%a0%e5%99%a8%e5%bc%95%e7%94%a8/" class="tag-cloud-link tag-link-67 tag-link-position-42" style="font-size: 8pt;" aria-label="构造器引用 (1个项目)">构造器引用</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1/" class="tag-cloud-link tag-link-42 tag-link-position-43" style="font-size: 8pt;" aria-label="负载均衡 (1个项目)">负载均衡</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e9%98%b2%e7%81%ab%e5%a2%99/" class="tag-cloud-link tag-link-31 tag-link-position-44" style="font-size: 8pt;" aria-label="防火墙 (1个项目)">防火墙</a>-->
+<!--                            <a href="http://xuewei.world:8000/tag/%e9%98%bf%e9%87%8c%e4%ba%91/" class="tag-cloud-link tag-link-33 tag-link-position-45" style="font-size: 14.913580246914pt;" aria-label="阿里云 (4个项目)">阿里云</a></div>-->
+<!--                        </section><section id="categories-6" class="widget widget_categories"><h2 class="widget-title">分类目录</h2>		<ul>-->
+<!--                            <li class="cat-item cat-item-2"><a href="http://xuewei.world:8000/category/linux/">Linux</a> (31)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-49"><a href="http://xuewei.world:8000/category/spring%e5%ae%b6%e6%97%8f/">Spring家族</a> (10)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-79"><a href="http://xuewei.world:8000/category/%e5%88%86%e5%b8%83%e5%bc%8f/">分布式</a> (1)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-5"><a href="http://xuewei.world:8000/category/%e5%89%8d%e7%ab%af/">前端</a> (5)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-4"><a href="http://xuewei.world:8000/category/%e5%90%8e%e7%ab%af/">后端</a> (29)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-44"><a href="http://xuewei.world:8000/category/%e5%a4%9a%e7%ba%bf%e7%a8%8b/">多线程</a> (3)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-1"><a href="http://xuewei.world:8000/category/%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/">学习笔记</a> (53)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-9"><a href="http://xuewei.world:8000/category/%e6%8a%80%e6%9c%af%e5%8d%9a%e5%ae%a2/">技术博客</a> (41)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-10"><a href="http://xuewei.world:8000/category/%e7%ae%97%e6%b3%95/">算法</a> (1)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-86"><a href="http://xuewei.world:8000/category/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f/">设计模式</a> (10)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-7"><a href="http://xuewei.world:8000/category/%e8%af%a5%e6%ad%bb%e7%9a%84bug/">该死的Bug</a> (5)-->
+<!--                            </li>-->
+<!--                            <li class="cat-item cat-item-6"><a href="http://xuewei.world:8000/category/%e9%a1%b9%e7%9b%ae%e5%ae%9e%e6%88%98/">项目实战</a> (12)-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        </section>	</div>-->
+
+<!--                    </aside>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </main>-->
+<!--    </div>-->
+<!--底部-->
+<footer>
+    <div class="footer-container">
+        <div class="row">
+            <div class="col-md-12 col-lg-6 ">
+                <div class="row">
+                    <div class="clearfix wrapper">
+                        <div class="content-links clearfix">
+                            <div class="footer-links">
+                                <a href="https://space.bilibili.com/60877" class="">bilibili</a>
+                                <a href="#">东南大学</a>
+                                <a href="#">东南大学化学化工学院</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+                <div class="row">
+                    <div class="clearfix wrapper">
+                        <div class="right_container clearfix">
+                            <div class="social-wrap hidden-xs hidden-sm hidden-md">
+                                <a class="blogicon" href="#">
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="footer-copyright">
+                <p>Copyright © Codelizh 2020 All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    $(".dropdown-toggle").click(function () {
+        $(".dropdown-menu").toggle();
+    });
+</script>
+
+</body>
+</html>
