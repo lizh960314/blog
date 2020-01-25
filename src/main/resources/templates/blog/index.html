@@ -1,79 +1,10 @@
 <!DOCTYPE html>
-<!--<html lang="en">-->
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width,initial-scale=1.0">
-
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
-
-    <link rel="stylesheet" href="static/css/main.min.css"/>
-
-    <link rel="stylesheet" href="static/css/index.css"/>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="static/js/bootstrap.min.js"></script>
-
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-
-    <title>长木博客</title>
-</head>
+<head th:replace="blog/header::head-fragment"></head>
 <body>
 <!-- 导航-->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header ">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">长木博客</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a style="width: 45px;height:50px;" class="navbar-brand" href="#">
-                <img alt="Brand" src="static/images/logo.png" width="100%" height="100%">
-            </a>
-            <a class="navbar-brand" href="#">长木博客</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">首页 </a></li>
-                <li><a href="#">分类</a></li>
-                <li><a href="#">归档</a></li>
-            </ul>
-            <!--                搜索框-->
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="搜索">
-                </div>
-                <button type="submit" class="btn btn-inverse">提交</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">关于我</a></li>
-                <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret" ></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">个人中心</a></li>
-                        <li><a href="#">我的收藏</a></li>
-                        <li><a href="#">浏览记录</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">退出登录</a></li>
-                    </ul>
-                </li>
-                <li th:if="${session.user == null }"><a href="https://github.com/login/oauth/authorize?client_id=a08ea8e11a598913a3ae&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<header th:replace="blog/header::header-fragment"></header>
 <!--中间内容-->
 <div class="container-fluid">
     <div style="background-image: url(static/images/header.jpg);"></div>
@@ -81,7 +12,7 @@
 
 <!--    <div>-->
 <!--        <main role="main" class="main-header has-custom-header">-->
-<!--            <div class="section-intro d-flex align-items-center" style="background-image: url(static/images/header.jpg);">-->
+<!--            <div class="section-intro d-flex align-items-center" style="background-image: url(static/img/header.jpg);">-->
 <!--                <div class="container-fluid  px-responsive">-->
 <!--                    <div class="d-md-flex align-items-center">-->
 <!--                        <div class="col-12 col-md-7 text-center text-md-left" style="min-height: 100%; overflow: hidden">-->
@@ -667,11 +598,14 @@
         </div>
     </div>
 </footer>
-<script>
-    $(".dropdown-toggle").click(function () {
-        $(".dropdown-menu").toggle();
-    });
-</script>
+
+<script th:src="@{/blog/js/jquery.min.js}"></script>
+<script th:src="@{/blog/js/bootstrap.min.js}"></script>
+<!--<script>-->
+<!--    $(".dropdown-toggle").click(function () {-->
+<!--        $(".dropdown-menu").toggle();-->
+<!--    });-->
+<!--</script>-->
 
 </body>
 </html>

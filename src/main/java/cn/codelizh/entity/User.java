@@ -1,4 +1,4 @@
-package cn.codelizh.blog.model;
+package cn.codelizh.entity;
 
 public class User {
     private Integer id;
