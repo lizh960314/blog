@@ -1,67 +1,99 @@
-package cn.codelizh.blog.entity;
+package cn.codelizh.entity;
 
-import java.util.Objects;
-import java.util.StringJoiner;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class AdminUser {
-    private Integer adminUserId;
+import java.io.Serializable;
+import java.util.Date;
 
-    private String loginUserName;
+public class AdminUser implements Serializable {
+    /**
+     * 主键
+     */
+    private Long id;
 
-    private String loginPassword;
+    /**
+     * 用户名
+     */
+    private String userName;
 
-    private String nickName;
+    /**
+     * 密码
+     */
+    private String password;
 
-    private Byte locked;
+    /**
+     * token值
+     */
+    private String userToken;
 
-    public Integer getAdminUserId() {
-        return adminUserId;
+    /**
+     * 是否已删除 0未删除 1已删除
+     */
+    private int isDeleted;
+
+    /**
+     * 添加时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date createTime;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setAdminUserId(Integer adminUserId) {
-        this.adminUserId = adminUserId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getLoginUserName() {
-        return loginUserName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLoginUserName(String loginUserName) {
-        this.loginUserName = loginUserName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getLoginPassword() {
-        return loginPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLoginPassword(String loginPassword) {
-        this.loginPassword = loginPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUserToken() {
+        return userToken;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
-    public Byte getLocked() {
-        return locked;
+    public int getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setLocked(Byte locked) {
-        this.locked = locked;
+    public void setIsDeleted(int isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
     public String toString() {
         return "AdminUser{" +
-                "adminUserId=" + adminUserId +
-                ", loginUserName='" + loginUserName + '\'' +
-                ", loginPassword='" + loginPassword + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", locked=" + locked +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", userToken='" + userToken + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", createTime=" + createTime +
                 '}';
     }
 }

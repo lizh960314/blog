@@ -1,9 +1,11 @@
-package cn.codelizh.blog;
+package cn.codelizh;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("cn.codelizh.dao")
 public class BlogApplication {
 
     public static void main(String[] args) {

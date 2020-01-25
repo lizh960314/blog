@@ -1,5 +1,8 @@
 package cn.codelizh.service;
 
+import cn.codelizh.utils.PageResult;
+import cn.codelizh.utils.PageUtil;
+
 /**
  * @Classname AdminUserService
  * @Description TODO
@@ -7,4 +10,13 @@ package cn.codelizh.service;
  * @Created by "Codelizh"
  */
 public interface AdminUserService {
+
+    /**
+     *
+     * @Description TODO 分页功能
+     * @param pageUtil
+     * @return
+     */
+    PageResult getAdminUserPage(PageUtil pageUtil);
+
 }
