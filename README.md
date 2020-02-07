@@ -68,7 +68,7 @@ CREATE TABLE `tb_admin_user` (
   PRIMARY KEY (`admin_user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*Data for the table `tb_admin_user` */
-insert  into `tb_admin_user`(`admin_user_id`,`login_user_name`,`login_password`,`nick_name`,`locked`) values (1,'admin','e10adc3949ba59abbe56e057f20f883e','十三',0);
+insert  into `tb_admin_user`(`admin_user_id`,`login_user_name`,`login_password`,`nick_name`,`locked`) values (1,'admin','e10adc3949ba59abbe56e057f20f883e','李志豪',0);
 ```
 
 ## 问题
