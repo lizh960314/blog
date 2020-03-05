@@ -1,21 +1,21 @@
 package cn.codelizh.core.util;
 
-import org.springframework.util.StringUtils;
 import org.commonmark.Extension;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 
-/**
- * @Classname MarkDownUtil
- * @Description TODO
- * @Date 2020/2/3 20:57
- * @Created by "Codelizh"
- */
 public class MarkDownUtil {
+    /**
+     * 转换md格式为html
+     *
+     * @param markdownString
+     * @return
+     */
     public static String mdToHtml(String markdownString) {
         if (StringUtils.isEmpty(markdownString)) {
             return "";

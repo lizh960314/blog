@@ -7,7 +7,7 @@
             <div id="jumbotron-meta-info">
                 <h1>Links</h1>
                 <span class="meta-info">
-                        <span class="mega-octicon octicon-organization"></span>&nbsp;&nbsp; 友情链接
+                        <span class="mega-octicon octicon-organization"></span>&nbsp;&nbsp; 收藏链接
                     </span>
             </div>
         </div>
@@ -16,11 +16,11 @@
         <div class="row">
             <div class="col-md-12 markdown-body">
                 <th:block th:unless="${#lists.isEmpty(favoriteLinks)}">
-                    <h2>友链</h2>
+                    <h2>个人收藏</h2>
                     <ul>
                         <th:block th:each="favoriteLink : ${favoriteLinks}">
                             <li><a th:href="@{${favoriteLink.linkUrl}}"
-                                   th:text="${favoriteLink.linkName}">友链</a>
+                                   th:text="${favoriteLink.linkName}">个人收藏</a>
                                 -
                                 <th:block th:text="${favoriteLink.linkDescription}"></th:block>
                             </li>
@@ -50,16 +50,15 @@
                         </th:block>
                     </ul>
                 </th:block>
-                <h2 id="个人链接">链接须知</h2>
-                <p>欢迎互换友链 ^_^ 不过请确定贵站可以正常运营.</p>
+                <h2 id="个人链接">联系方式</h2>
+
                 <p>我的邮箱是 <th:block th:text="${configurations.get('yourEmail')}"></th:block> , 格式要求如下:</p>
                 <ul>
-                    <li>网站名称：13blog</li>
+                    <li>网站名称：Codelizh Blog</li>
                     <li>网站链接：http://codelizh.cn</li>
                     <li>网站描述：李志豪的个人博客</li>
                 </ul>
 
-                <p>请保证自己的链接长期有效,不然可能会被清理.</p>
             </div>
 
         </div>

@@ -18,17 +18,18 @@
                     <th:block th:if="${null != blogPageResult}">
                         <th:block th:each="blog,iterStat : ${blogPageResult.list}">
                             <li class="post-list-item">
-                                <h3 class="post-list-title">
-                                    <a class="hvr-underline-from-center" th:href="@{'/blog/' + ${blog.blogId}}">
+                                <h5 class="post-list-title">
+                                    <a class="hvr-underline-from-center index-title" th:href="@{'/blog/' + ${blog.blogId}}">
                                         <th:block th:text="${blog.blogTitle}"></th:block>
                                     </a>
-                                </h3>
+                                </h5>
                                 <p class="post-list-cover-img">
                                     <a th:href="@{'/blog/' + ${blog.blogId}}"> <img th:src="@{${blog.blogCoverImage}}"
                                                                                     alt=""></a>
                                 </p>
                                 <p class="post-list-meta">
-                                    <span class="octicon octicon-calendar"
+                                    <span class="octicon octicon-calendar"></span>
+                                    <span class="octicon-index"
                                           th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd')}"></span>
                                 </p>
                             </li>

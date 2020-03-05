@@ -4,10 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @Classname PageResult
- * @Description TODO
- * @Date 2020/1/23 14:09
- * @Created by "Codelizh"
+ * 分页工具类
+ *
  */
 public class PageResult implements Serializable {
 
@@ -78,11 +76,4 @@ public class PageResult implements Serializable {
         this.list = list;
     }
 
-    public PageResult(int totalCount, int pageSize, int currPage, List<?> list) {
-        this.totalCount = totalCount;
-        this.pageSize = pageSize;
-        this.currPage = currPage;
-        this.list = list;
-        this.totalPage = (int) Math.ceil(totalCount / pageSize);
-    }
 }

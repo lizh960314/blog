@@ -18,7 +18,7 @@ import java.util.Map;
 @Controller
 public class ErrorPageController implements ErrorController {
 
-    private static ErrorPageController errorPageController;
+    private static cn.codelizh.core.controller.common.ErrorPageController errorPageController;
 
     @Autowired
     private ErrorAttributes errorAttributes;
@@ -31,7 +31,7 @@ public class ErrorPageController implements ErrorController {
 
     public ErrorPageController() {
         if (errorPageController == null) {
-            errorPageController = new ErrorPageController(errorAttributes);
+            errorPageController = new cn.codelizh.core.controller.common.ErrorPageController(errorAttributes);
         }
     }
 

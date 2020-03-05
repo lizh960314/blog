@@ -8,12 +8,6 @@ import cn.codelizh.core.util.PageResult;
 
 import java.util.List;
 
-/**
- * @Classname BlogService
- * @Description TODO
- * @Date 2020/2/3 21:32
- * @Created by "Codelizh"
- */
 public interface BlogService {
     String saveBlog(Blog blog);
 

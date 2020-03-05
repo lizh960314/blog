@@ -2,7 +2,6 @@ package cn.codelizh.core.dao;
 
 import cn.codelizh.core.entity.BlogConfig;
 
-
 import java.util.List;
 
 public interface BlogConfigMapper {

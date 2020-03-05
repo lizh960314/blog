@@ -2,13 +2,9 @@ package cn.codelizh.core.util;
 
 import java.security.MessageDigest;
 
-/**
- * @Classname MD5Util
- * @Description TODO
- * @Date 2020/1/26 14:20
- * @Created by "Codelizh"
- */
+
 public class MD5Util {
+
     private static String byteArrayToHexString(byte b[]) {
         StringBuffer resultSb = new StringBuffer();
         for (int i = 0; i < b.length; i++)

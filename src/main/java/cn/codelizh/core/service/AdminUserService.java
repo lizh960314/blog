@@ -2,19 +2,36 @@ package cn.codelizh.core.service;
 
 import cn.codelizh.core.entity.AdminUser;
 
-/**
- * @Classname AdminUserService
- * @Description TODO
- * @Date 2020/1/22 23:27
- * @Created by "Codelizh"
- */
 public interface AdminUserService {
 
     AdminUser login(String userName, String password);
 
+    /**
+     * 获取用户信息
+     *
+     * @param loginUserId
+     * @return
+     */
     AdminUser getUserDetailById(Integer loginUserId);
 
-    boolean updatePassword(Integer loginUserId, String originalPassword, String newPassword);
+    /**
+     * 修改当前登录用户的密码
+     *
+     * @param loginUserId
+     * @param originalPassword
+     * @param newPassword
+     * @return
+     */
+    Boolean updatePassword(Integer loginUserId, String originalPassword, String newPassword);
 
-    boolean updateName(Integer loginUserId, String loginUserName, String nickName);
+    /**
+     * 修改当前登录用户的名称信息
+     *
+     * @param loginUserId
+     * @param loginUserName
+     * @param nickName
+     * @return
+     */
+    Boolean updateName(Integer loginUserId, String loginUserName, String nickName);
+
 }

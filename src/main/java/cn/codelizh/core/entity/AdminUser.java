@@ -1,11 +1,6 @@
 package cn.codelizh.core.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.io.Serializable;
-import java.util.Date;
-
-public class AdminUser implements Serializable {
+public class AdminUser {
     private Integer adminUserId;
 
     private String loginUserName;

@@ -26,12 +26,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * @Classname BlogController
- * @Description TODO
- * @Date 2020/2/3 22:47
- * @Created by "Codelizh"
- */
+
 @Controller
 @RequestMapping("/admin")
 public class BlogController {
@@ -229,4 +224,3 @@ public class BlogController {
     }
 
 }
-

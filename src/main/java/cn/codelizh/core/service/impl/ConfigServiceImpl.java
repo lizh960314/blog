@@ -18,18 +18,18 @@ public class ConfigServiceImpl implements ConfigService {
     private BlogConfigMapper configMapper;
 
     public static final String websiteName = "Codelizh Blog";
-    public static final String websiteDescription = "Codelizh Blog是SpringBoot2+Thymeleaf+Mybatis建造的个人博客网站.SpringBoot实战博客源码.个人博客搭建";
-    public static final String websiteLogo = "/admin/dist/img/logo.png";
+    public static final String websiteDescription = "本站是SpringBoot2+Thymeleaf+Mybatis建造的个人博客网站.";
+    public static final String websiteLogo = "/admin/dist/img/logo2.png";
     public static final String websiteIcon = "/admin/dist/img/favicon.png";
 
     public static final String yourAvatar = "/admin/dist/img/13.png";
     public static final String yourEmail = "448635854@qq.com";
-    public static final String yourName = "李志豪";
+    public static final String yourName = "Codelizh";
 
-    public static final String footerAbout = "李志豪的个人博客.";
+    public static final String footerAbout = "Welcome to my Blog.";
     public static final String footerICP = "浙ICP备 xxxxxx-x号";
-    public static final String footerCopyRight = "@2019-2020 李志豪";
-    public static final String footerPoweredBy = "Codelizh Blog";
+    public static final String footerCopyRight = "@2019-2020 Codelizh";
+    public static final String footerPoweredBy = "personal blog";
     public static final String footerPoweredByURL = "##";
 
     @Override

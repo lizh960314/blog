@@ -6,12 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * @Classname BlogMapper
- * @Description TODO
- * @Date 2020/2/3 21:33
- * @Created by "Codelizh"
- */
 public interface BlogMapper {
     int deleteByPrimaryKey(Long blogId);
 
@@ -41,6 +35,6 @@ public interface BlogMapper {
 
     Blog selectBySubUrl(String subUrl);
 
-    int updateBlogCategorys(@Param("categoryName") String categoryName, @Param("categoryId") Integer categoryId, @Param("ids")Integer[] ids);
+    int updateBlogCategorys(@Param("categoryName") String categoryName, @Param("categoryId") Integer categoryId, @Param("ids") Integer[] ids);
 
 }

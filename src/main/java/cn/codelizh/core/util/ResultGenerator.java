@@ -1,21 +1,21 @@
 package cn.codelizh.core.util;
 
+import cn.codelizh.core.util.Result;
 import org.springframework.util.StringUtils;
 
 /**
- * @Classname ResultGenerator
- * @Description TODO
- * @Date 2020/1/24 20:53
- * @Created by "Codelizh"
+ * 响应结果生成工具
+ *
+ * @author 13
+ * @qq交流群 796794009
+ * @email 2449207463@qq.com
+ * @link http://13blog.site
  */
 public class ResultGenerator {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
     private static final String DEFAULT_FAIL_MESSAGE = "FAIL";
     private static final int RESULT_CODE_SUCCESS = 200;
     private static final int RESULT_CODE_SERVER_ERROR = 500;
-    public static final int RESULT_CODE_BAD_REQUEST = 412;  // 请求错误
-    public static final int RESULT_CODE_NOT_LOGIN = 402;  // 未登录
-    public static final int RESULT_CODE_PARAM_ERROR = 406;  // 传参错误
 
     public static Result genSuccessResult() {
         Result result = new Result();
@@ -47,13 +47,6 @@ public class ResultGenerator {
         } else {
             result.setMessage(message);
         }
-        return result;
-    }
-
-    public static Result genNullResult(String message) {
-        Result result = new Result();
-        result.setResultCode(RESULT_CODE_BAD_REQUEST);
-        result.setMessage(message);
         return result;
     }
 

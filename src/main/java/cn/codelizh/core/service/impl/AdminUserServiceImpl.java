@@ -2,19 +2,12 @@ package cn.codelizh.core.service.impl;
 
 import cn.codelizh.core.dao.AdminUserMapper;
 import cn.codelizh.core.entity.AdminUser;
-import cn.codelizh.core.util.MD5Util;
 import cn.codelizh.core.service.AdminUserService;
+import cn.codelizh.core.util.MD5Util;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-/**
- * @author "Codelizh"
- * @Classname AdminUserServiceImpl
- * @Description TODO
- * @Date 2020/1/23 14:39
- * @Created by "Codelizh"
- */
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
 
@@ -29,17 +22,17 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public AdminUser getUserDetailById(Integer loginUserId) {
-        return null;
+        return adminUserMapper.selectByPrimaryKey(loginUserId);
     }
 
     @Override
-    public boolean updatePassword(Integer loginUserId, String originalPassword, String newPassword) {
+    public Boolean updatePassword(Integer loginUserId, String originalPassword, String newPassword) {
         AdminUser adminUser = adminUserMapper.selectByPrimaryKey(loginUserId);
         //当前用户非空才可以进行更改
         if (adminUser != null) {
             String originalPasswordMd5 = MD5Util.MD5Encode(originalPassword, "UTF-8");
             String newPasswordMd5 = MD5Util.MD5Encode(newPassword, "UTF-8");
-            //比较是否正确
+            //比较原密码是否正确
             if (originalPasswordMd5.equals(adminUser.getLoginPassword())) {
                 //设置新密码并修改
                 adminUser.setLoginPassword(newPasswordMd5);
@@ -53,7 +46,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    public boolean updateName(Integer loginUserId, String loginUserName, String nickName) {
+    public Boolean updateName(Integer loginUserId, String loginUserName, String nickName) {
         AdminUser adminUser = adminUserMapper.selectByPrimaryKey(loginUserId);
         //当前用户非空才可以进行更改
         if (adminUser != null) {
@@ -67,17 +60,4 @@ public class AdminUserServiceImpl implements AdminUserService {
         }
         return false;
     }
-
-    //    @Autowired
-//    private AdminUserDao adminUserDao;
-//
-//    @Override
-//    public PageResult getAdminUserPage(PageUtil pageUtil) {
-//        //当前页码中的数据列表
-//        List<AdminUser> users = adminUserDao.findAdminUsers(pageUtil);
-//        //数据总条数 用于计算分页数据
-//        int total = adminUserDao.getTotalAdminUser(pageUtil);
-//        PageResult pageResult = new PageResult(total, pageUtil.getLimit(), pageUtil.getPage(), users);
-//        return pageResult;
-//    }
 }

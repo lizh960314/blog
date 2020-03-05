@@ -5,10 +5,7 @@ import org.springframework.util.StringUtils;
 import java.net.URI;
 
 /**
- * @Classname MyBlogUtil
- * @Description TODO
- * @Date 2020/2/3 21:11
- * @Created by "Codelizh"
+ * @author 13
  */
 public class MyBlogUtils {
 

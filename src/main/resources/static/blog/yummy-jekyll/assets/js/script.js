@@ -15,4 +15,3 @@ var windowScroll = function () {
 $( document ).ready(function() {
     windowScroll();
 });
-

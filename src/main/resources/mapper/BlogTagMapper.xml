@@ -77,9 +77,9 @@
     </insert>
 
     <insert id="insert" parameterType="cn.codelizh.core.entity.BlogTag">
-    insert into tb_blog_tag (tag_id, tag_name, is_deleted, 
+    insert into tb_blog_tag (tag_id, tag_name, is_deleted,
       create_time)
-    values (#{tagId,jdbcType=INTEGER}, #{tagName,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT}, 
+    values (#{tagId,jdbcType=INTEGER}, #{tagName,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT},
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="cn.codelizh.core.entity.BlogTag">

@@ -1,5 +1,4 @@
 $(function () {
-$(function () {
     $("#jqGrid").jqGrid({
         url: '/admin/tags/list',
         datatype: "json",

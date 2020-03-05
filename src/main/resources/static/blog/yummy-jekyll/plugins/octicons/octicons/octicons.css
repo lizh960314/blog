@@ -15,7 +15,7 @@
   
   */
   .octicon, .mega-octicon {
-    font: normal normal normal 16px/1 octicons;
+    font: normal normal normal 14px/1 octicons;
     display: inline-block;
     text-decoration: none;
     text-rendering: auto;
@@ -27,7 +27,11 @@
     user-select: none;
   }
   .mega-octicon { font-size: 32px; }
-  
+  /*修改*/
+  .octicon-index {
+    margin-left: 10px;
+    font-size: 14px;
+  }
   .octicon-alert:before { content: '\f02d'} /*  */
   .octicon-arrow-down:before { content: '\f03f'} /*  */
   .octicon-arrow-left:before { content: '\f040'} /*  */

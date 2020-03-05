@@ -4,10 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @Classname PatternUtil
- * @Description TODO 正则类工具
- * @Date 2020/2/3 20:55
- * @Created by "Codelizh"
+ * 正则工具类
+ *
+ * @author 13
+ * @qq交流群 796794009
+ * @email 2449207463@qq.com
+ * @link http://13blog.site
  */
 public class PatternUtil {
 
@@ -57,6 +59,5 @@ public class PatternUtil {
             return false;
         }
     }
-
 
 }

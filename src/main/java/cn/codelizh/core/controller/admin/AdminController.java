@@ -1,7 +1,7 @@
 package cn.codelizh.core.controller.admin;
 
 import cn.codelizh.core.entity.AdminUser;
-import cn.codelizh.core.service.AdminUserService;
+import cn.codelizh.core.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -10,22 +10,46 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- * @Classname AdminController
- * @Description TODO
- * @Date 2020/1/26 13:21
- * @Created by "Codelizh"
- */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
     @Resource
     private AdminUserService adminUserService;
+    @Resource
+    private BlogService blogService;
+    @Resource
+    private CategoryService categoryService;
+    @Resource
+    private LinkService linkService;
+    @Resource
+    private TagService tagService;
+    @Resource
+    private CommentService commentService;
+
 
     @GetMapping({"/login"})
     public String login() {
         return "admin/login";
+    }
+
+    @GetMapping({"/test"})
+    public String test() {
+        return "admin/test";
+    }
+
+
+    @GetMapping({"", "/", "/index", "/index.html"})
+    public String index(HttpServletRequest request) {
+        request.setAttribute("path", "index");
+        request.setAttribute("categoryCount", categoryService.getTotalCategories());
+        request.setAttribute("blogCount", blogService.getTotalBlogs());
+        request.setAttribute("linkCount", linkService.getTotalLinks());
+        request.setAttribute("tagCount", tagService.getTotalTags());
+        request.setAttribute("commentCount", commentService.getTotalComments());
+        request.setAttribute("path", "index");
+        return "admin/index";
     }
 
     @PostMapping(value = "/login")
@@ -51,13 +75,12 @@ public class AdminController {
             session.setAttribute("loginUser", adminUser.getNickName());
             session.setAttribute("loginUserId", adminUser.getAdminUserId());
             //session过期时间设置为7200秒 即两小时
-            session.setMaxInactiveInterval(60 * 60 * 2);
+            //session.setMaxInactiveInterval(60 * 60 * 2);
             return "redirect:/admin/index";
         } else {
             session.setAttribute("errorMsg", "登陆失败");
             return "admin/login";
         }
-
     }
 
     @GetMapping("/profile")
@@ -107,10 +130,11 @@ public class AdminController {
         }
     }
 
-
-    @GetMapping({"", "/", "/index", "/index.html"})
-    public String index() {
-        return "admin/index";
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("loginUserId");
+        request.getSession().removeAttribute("loginUser");
+        request.getSession().removeAttribute("errorMsg");
+        return "admin/login";
     }
-
 }

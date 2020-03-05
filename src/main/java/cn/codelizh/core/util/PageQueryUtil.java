@@ -4,10 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @Classname PageQueryUtil
- * @Description TODO 分页查询参数
- * @Date 2020/2/1 21:09
- * @Created by "Codelizh"
+ * 分页查询参数
+ *
  */
 public class PageQueryUtil extends LinkedHashMap<String, Object> {
     //当前页码
@@ -50,6 +48,4 @@ public class PageQueryUtil extends LinkedHashMap<String, Object> {
                 ", limit=" + limit +
                 '}';
     }
-
-
 }
