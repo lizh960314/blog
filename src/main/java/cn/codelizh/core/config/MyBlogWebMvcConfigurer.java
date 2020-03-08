@@ -1,6 +1,6 @@
 package cn.codelizh.core.config;
 
-import cn.codelizh.core.config.Constants;
+
 import cn.codelizh.core.interceptor.AdminLoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
